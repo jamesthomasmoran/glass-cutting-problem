@@ -18,30 +18,39 @@ public class Shelf {
 	// Shelf height: Equals to the height of the first shape placed in the shelf
 	private int shelfHeight;
 
-	List<Shape> shapes = new ArrayList<>();
+	List<Column> columns = new ArrayList<>();
 
 	public Shelf() {
-
+		addColumn();
 	}
+
 
 	public int getHeight() {
 
-		if (shapes.size() != 0) {
+		if (columns.get(0).getShapes().size() != 0) {
 			// equals to the height of shape placed at the left
-			this.shelfHeight = shapes.get(0).getHeight();
+			this.shelfHeight = columns.get(0).getShapes().get(0).getHeight();
 			return this.shelfHeight;
 		} else
 			return 0;
 	}
 
-	public void place(Shape shape) {
+	public void addColumn(){
+		Column column = new Column();
+		column.setXLocation(this.getWidth());
 
-		usedWidth += shape.getCombinedWidth();
-		shapes.add(shape);
+		this.columns.add(column);
 	}
 
-	public List<Shape> getShapes() {
-		return shapes;
+	public void place(Shape shape, int columnIndex) {
+
+		usedWidth += shape.getCombinedWidth();
+
+		columns.get(columnIndex).addShape(shape);
+	}
+
+	public List<Column> getColumns() {
+		return columns;
 	}
 
 
