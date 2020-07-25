@@ -1,5 +1,6 @@
 package io.github.jamesthomasmoran.glasscuttingproblem.service;
 
+import io.github.jamesthomasmoran.glasscuttingproblem.model.Column;
 import io.github.jamesthomasmoran.glasscuttingproblem.model.Shape;
 import io.github.jamesthomasmoran.glasscuttingproblem.model.Sheet;
 import io.github.jamesthomasmoran.glasscuttingproblem.model.Shelf;
@@ -40,16 +41,24 @@ public class GlassCuttingServiceTest {
         Shelf shelf1 = new Shelf();
         Shelf shelf2 = new Shelf();
 
+
+        shelf1.addColumn();
+        shelf1.addColumn();
+        shelf1.addColumn();
+
+        shelf2.addColumn();
+        shelf2.addColumn();
+
         Shape shape1 = new Shape(50, 100);
         Shape shape2 = new Shape(100, 50);
         Shape shape3 = new Shape(50, 50);
 
-        shelf1.place(shape1);
-        shelf1.place(shape2);
-        shelf1.place(shape3);
+        shelf1.place(shape1, 0);
+        shelf1.place(shape2, 0);
+        shelf1.place(shape3, 0);
 
-        shelf2.place(shape1);
-        shelf2.place(shape2);
+        shelf2.place(shape1, 1);
+        shelf2.place(shape2, 1);
 
         sheet1.addShelf(shelf1);
         sheet1.addShelf(shelf2);
@@ -78,7 +87,8 @@ public class GlassCuttingServiceTest {
     public void testShapeFitsOnNewShelfOnCurrentSheetSetsShapeIsValidToFalseWhenItCannotFitOnSheetInNewShelf(){
         Shape shape = new Shape(200,200);
         Shelf shelf = new Shelf();
-        shelf.place(shape);
+        shelf.addColumn();
+        shelf.place(shape, 0);
         Sheet sheet = new Sheet();
         sheet.addShelf(shelf);
         shape = glassCuttingService.shapeFitsOnNewShelfOnCurrentSheet(sheet, shape);
@@ -90,7 +100,8 @@ public class GlassCuttingServiceTest {
     public void testShapeFitsOnNewShelfOnCurrentSheetSetsShapeIsValidToTrueAndZerosCoordinates(){
         Shape shape = new Shape(200,100);
         Shelf shelf = new Shelf();
-        shelf.place(shape);
+        shelf.addColumn();
+        shelf.place(shape, 0);
         Sheet sheet = new Sheet();
         sheet.addShelf(shelf);
         shape = glassCuttingService.shapeFitsOnNewShelfOnCurrentSheet(sheet, shape);
@@ -106,7 +117,8 @@ public class GlassCuttingServiceTest {
         Shape shape = new Shape(10, 10);
 
         for(int i = 0; i < 20; i++){
-            shelf.place(shape);
+            shelf.addColumn();
+            shelf.place(shape, i);
         }
 
         Shape newShape = new Shape(5,5);
@@ -120,7 +132,8 @@ public class GlassCuttingServiceTest {
         Shape shape = new Shape(10, 10);
 
         for(int i = 0; i < 19; i++){
-            shelf.place(shape);
+            shelf.addColumn();
+            shelf.place(shape, i);
         }
 
         Shape newShape = new Shape(5,5);
@@ -143,7 +156,8 @@ public class GlassCuttingServiceTest {
     public void testFitsHeightWithShapeThatDoesNotFitHeightWithoutPlacedShapeSetsValidToFalse(){
         Shelf shelf = new Shelf();
         Shape shape1 = new Shape(20, 20);
-        shelf.place(shape1);
+        shelf.addColumn();
+        shelf.place(shape1, 0);
         Shape shape2 = new Shape(20, 21);
         shape2 = glassCuttingService.fitsHeight(shelf, shape2, null);
 
@@ -154,9 +168,11 @@ public class GlassCuttingServiceTest {
     public void testFitsHeightWithShapeThatFitsHeightWithPlacedShapeSetsYToTopOfPlacedShapeValidToTrue(){
         Shelf shelf = new Shelf();
         Shape shape1 = new Shape(20, 20);
-        shelf.place(shape1);
+        shelf.addColumn();
+        shelf.place(shape1, 0);
         Shape shape2 = new Shape(20, 10);
-        shelf.place(shape2);
+        shelf.addColumn();
+        shelf.place(shape2, 1);
         Shape shape3 = new Shape(20, 5);
         shape3 = glassCuttingService.fitsHeight(shelf, shape3, shape2);
 
@@ -168,9 +184,10 @@ public class GlassCuttingServiceTest {
     public void testFitsHeightWithShapeThatDoesNotFitHeightWithPlacedShapeSetsValidToFalse(){
         Shelf shelf = new Shelf();
         Shape shape1 = new Shape(20, 20);
-        shelf.place(shape1);
+        shelf.place(shape1, 0);
         Shape shape2 = new Shape(20, 10);
-        shelf.place(shape2);
+        shelf.addColumn();
+        shelf.place(shape2, 1);
         Shape shape3 = new Shape(20, 11);
         shape3 = glassCuttingService.fitsHeight(shelf, shape3, shape2);
 
@@ -183,7 +200,7 @@ public class GlassCuttingServiceTest {
 
         Shape shape1 = new Shape(20, 10);
         shape1.setXLocation(20);
-        shelf.place(shape1);
+        shelf.place(shape1, 0);
         Shape shape2 = new Shape(20, 10);
         shape2 = glassCuttingService.fitsWidth(shelf, shape2, shape1, null);
 
@@ -197,7 +214,7 @@ public class GlassCuttingServiceTest {
 
         Shape shape1 = new Shape(20, 10);
         shape1.setXLocation(20);
-        shelf.place(shape1);
+        shelf.place(shape1, 0);
         Shape shape2 = new Shape(20, 10);
 
         Shape shape3 = new Shape(20,10);
@@ -213,7 +230,8 @@ public class GlassCuttingServiceTest {
 
         Shape shape1 = new Shape(20, 10);
         shape1.setXLocation(20);
-        shelf.place(shape1);
+
+        shelf.place(shape1, 0);
         Shape shape2 = new Shape(50, 10);
         shape2 = glassCuttingService.fitsWidth(shelf, shape2, shape1, null);
 
@@ -227,7 +245,8 @@ public class GlassCuttingServiceTest {
 
         Shape shape1 = new Shape(20, 10);
         shape1.setXLocation(20);
-        shelf.place(shape1);
+
+        shelf.place(shape1, 0);
         Shape shape2 = new Shape(30, 10);
 
         Shape shape3 = new Shape(50,10);
@@ -244,10 +263,11 @@ public class GlassCuttingServiceTest {
 
         Shape shape1 = new Shape(51, 10);
         shape1.setXLocation(0);
-        shelf.place(shape1);
+        shelf.place(shape1, 0);
         Shape shape2 = new Shape(51,10);
         shape2.setXLocation(51);
-        shelf.place(shape2);
+        shelf.addColumn();
+        shelf.place(shape2, 1);
         Shape shape3 = new Shape(300, 10);
 
 

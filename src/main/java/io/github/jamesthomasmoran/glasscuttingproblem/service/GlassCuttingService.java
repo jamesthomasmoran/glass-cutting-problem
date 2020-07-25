@@ -1,5 +1,6 @@
 package io.github.jamesthomasmoran.glasscuttingproblem.service;
 
+import io.github.jamesthomasmoran.glasscuttingproblem.model.Column;
 import io.github.jamesthomasmoran.glasscuttingproblem.model.Shape;
 import io.github.jamesthomasmoran.glasscuttingproblem.model.Sheet;
 import io.github.jamesthomasmoran.glasscuttingproblem.model.Shelf;
@@ -24,13 +25,16 @@ public abstract class GlassCuttingService implements IGlassCuttingService {
         return DoubleRounder.round(totalFilledArea / MAX_AREA, 2);
     }
 
+    
     private double getTotalFilledAreaOfSheets(List<Sheet> sheets){
         double totalFilledArea = 0;
         for(Sheet sheet : sheets){
             for(Shelf shelf : sheet.getShelves()){
-                for(Shape shape : shelf.getShapes()){
-                    double shapeArea = shape.getHeight() * shape.getWidth();
-                    totalFilledArea += shapeArea;
+                for(Column column : shelf.getColumns()){
+                    for(Shape shape : column.getShapes()) {
+                        double shapeArea = shape.getHeight() * shape.getWidth();
+                        totalFilledArea += shapeArea;
+                    }
                 }
             }
         }
@@ -101,11 +105,20 @@ public abstract class GlassCuttingService implements IGlassCuttingService {
     }
 
     Shape lessThanMaxShapesPerShelf(Shelf shelf, Shape shape){
-        if (shelf.getShapes().size() < Sheet.SHAPE_LIMIT){
+        if (getNumberOfShapesOnShelf(shelf) < Sheet.SHAPE_LIMIT){
             shape.setValidShapeNumber(true);
         }
 
         return shape;
+    }
+
+    private int getNumberOfShapesOnShelf(Shelf shelf){
+        int total = 0;
+
+        for(Column column : shelf.getColumns()){
+            total += column.getShapes().size();
+        }
+        return total;
     }
 
     Shape shapeFitsOnNewShelfOnCurrentSheet(Sheet sheet, Shape shape){

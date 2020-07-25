@@ -33,7 +33,7 @@ public class Sheet {
 		for (Shelf shelf : this.shelves) {
 
 			// has a shelf with at least 1 shape
-			if (!shelf.getShapes().isEmpty()) {
+			if (!shelf.getColumns().isEmpty()) {
 
 				// add all shelf height to total
 				total += shelf.getHeight();

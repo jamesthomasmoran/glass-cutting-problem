@@ -31,6 +31,8 @@ public class Shape implements Comparable<Shape> {
 
 	private boolean validShapeNumber;
 
+	private int insertionNumber;
+
 	public Shape(int width, int height) {
 
 		// Shape width and height should not be greater than the sheet width and height
@@ -105,6 +107,14 @@ public class Shape implements Comparable<Shape> {
 
 	public void setCombinedWidth(int combinedWidth) {
 		this.combinedWidth = combinedWidth;
+	}
+
+	public int getInsertionNumber() {
+		return insertionNumber;
+	}
+
+	public void setInsertionNumber(int insertionNumber) {
+		this.insertionNumber = insertionNumber;
 	}
 
 	@Override
