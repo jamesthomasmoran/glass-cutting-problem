@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import ShapeRequestForm from './app/components/ShapeRequestForm/shapeRequestForm';
 import reportWebVitals from './reportWebVitals';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ShapeRequestForm />
   </React.StrictMode>,
   document.getElementById('root')
 );
