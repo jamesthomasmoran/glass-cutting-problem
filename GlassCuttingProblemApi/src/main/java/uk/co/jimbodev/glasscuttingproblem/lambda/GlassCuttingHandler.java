@@ -16,7 +16,9 @@ import uk.co.jimbodev.glasscuttingproblem.to.Shape;
 import uk.co.jimbodev.glasscuttingproblem.to.Shapes;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GlassCuttingHandler implements RequestHandler<GlassCuttingRequest, APIGatewayProxyResponseEvent> {
 
@@ -34,7 +36,6 @@ public class GlassCuttingHandler implements RequestHandler<GlassCuttingRequest, 
     private static final int EMPTY = 0;
     private static final String ERROR_JSON = "{\n\t 'error' :";
     private static final String CLOSING_JSON = "\n}";
-
     public APIGatewayProxyResponseEvent handleRequest(GlassCuttingRequest request, Context context) {
 
         GlassCuttingResponseBody body = new GlassCuttingResponseBody();
@@ -64,6 +65,11 @@ public class GlassCuttingHandler implements RequestHandler<GlassCuttingRequest, 
             response.setStatusCode(BAD_REQ_400);
             response.setBody(ERROR_JSON + exception.getMessage() + CLOSING_JSON);
         }
+        Map<String, String> headers = new HashMap();
+        headers.put("Access-Control-Allow-Origin", "*");
+        headers.put("Access-Control-Allow-Methods", "POST, GET");
+        headers.put("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        response.setHeaders(headers);
         return response;
     }
 
