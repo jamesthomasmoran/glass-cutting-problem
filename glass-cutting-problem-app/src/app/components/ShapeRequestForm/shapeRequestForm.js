@@ -15,16 +15,11 @@ class ShapeRequestForm extends React.Component {
         shapesGreaterMax: empty,
         selectCuttingAlgorithm: empty
       },
-      output: {
-        title: empty,
-        numberOfSheetsUsed: empty,
-        areaUsageEfficiency: empty,
-        sheets: []
-      }
     };
     this.setShapesState = this.setShapesState.bind(this)
     this.setErrorsState = this.setErrorsState.bind(this)
-    this.setOutputState = this.setOutputState.bind(this)
+    this.setOutputState = this.props.setOutputState.bind(this)
+
   }
   
 setShapesState(shapes){
@@ -33,18 +28,9 @@ setShapesState(shapes){
 setErrorsState(errors){
     this.setState({"errors": errors})
 }
-setOutputState(updatedTitle, updatedSheets, updatedNumberOfSheetsUsed, updatedAreaUsageEfficiency){
-  let updatedOutput = this.state.output
-  updatedOutput.title = updatedTitle
-  updatedOutput.sheets = updatedSheets
-  updatedOutput.numberOfSheetsUsed = updatedNumberOfSheetsUsed
-  updatedOutput.areaUsageEfficiency = updatedAreaUsageEfficiency
-  this.setState({"output": updatedOutput})
-}
 
 render() {
   return (
-    <div className="container-xl">
         <div className="accordion" id="shapeRequestForm">
             <div className="card" id="shapesCard">
                 <div className="card-header" id="shapes">
@@ -72,7 +58,6 @@ render() {
                 </div>
             </div>
         </div>
-  </div>
     )
   }
 }
