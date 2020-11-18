@@ -92,13 +92,13 @@ it("should prevent width being set below 35", () => {
     });
     
     expect(shapeList.length).toBe(1)
-    expect(shapeList[0].width).toBe("35px")
-    expect(shapeList[0].height).toBe("30px")
+    expect(shapeList[0].width).toBe(35)
+    expect(shapeList[0].height).toBe(30)
   })
 
   it("should not add shape and display error message when shapeList is already 50 items in length", () => {
     let errors = {shapesGreaterMax: ""}
-    let shapeList = [{width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"35px", height:"30px"}, {width:"60px", height:"60px"}]
+    let shapeList = [{width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"35", height:"30"}, {width:"60", height:"60"}]
     act(() => {
         const shapeState = jest.fn((newShapes) => {shapeList = newShapes})
         const errorState = jest.fn((updatedErrors) => {errors = updatedErrors})
@@ -108,7 +108,7 @@ it("should prevent width being set below 35", () => {
     });
 
     expect(shapeList.length).toBe(50)
-    expect(shapeList[49].width).toBe("60px")
-    expect(shapeList[49].height).toBe("60px")
+    expect(shapeList[49].width).toBe("60")
+    expect(shapeList[49].height).toBe("60")
     expect(errors.shapesGreaterMax).toBe("You can only add 50 shapes")
   })

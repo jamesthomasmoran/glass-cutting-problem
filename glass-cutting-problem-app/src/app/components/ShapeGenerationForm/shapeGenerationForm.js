@@ -33,8 +33,8 @@ class ShapeGenerationForm extends React.Component {
     if(newShapes.length < maxShapes){
       
       newShapes.push({
-        width: this.state.width + pixels,
-        height: this.state.height + pixels
+        width: this.state.width,
+        height: this.state.height
       })
     
       this.setShapesState(newShapes)
@@ -78,7 +78,7 @@ validateShapeDimension(val, min, max){
     if(this.props.errors[errorName] === errorMessage){
       return (
       <div id="maxShapesError" className="alert alert-danger" role="alert">
-        {this.state.errors[errorName]}
+        {this.props.errors[errorName]}
       </div>
       )
     }
@@ -89,7 +89,7 @@ validateShapeDimension(val, min, max){
 
 render() {
   return (
-          <form onSubmit={this.handleSubmit}>
+          <form id="shapeGenerationForm" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label htmlFor="heightInput" className="mt-2">Height:</label>
               <input id="heightInput" className="form-control" name={height} type="number" value={this.state.height} onChange={this.handleChange} />
