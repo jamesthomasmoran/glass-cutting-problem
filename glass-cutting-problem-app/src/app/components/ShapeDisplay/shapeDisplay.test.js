@@ -19,7 +19,7 @@ afterEach(() => {
 });
 
 it("should render 4 shapes", () => {
-  let shapeList = [{"width": "40px", "height":"40px"}, {"width": "50px", "height":"40px"}, {"width": "40px", "height":"70px"},{"width": "50px", "height":"80px"}]
+  let shapeList = [{"width": "40", "height":"40"}, {"width": "50", "height":"40"}, {"width": "40", "height":"70"},{"width": "50", "height":"80"}]
   let errors = {shapesGreaterThanMax: ""}
   act(() => {  
     const shapeState = jest.fn((newShapes) => {shapeList = newShapes})
@@ -65,7 +65,7 @@ it("should render 0 shapes", () => {
   })
 
   it("should make shapeList length 3 when shape clicked on", () => {
-    let shapeList = [{"width": "40px", "height":"40px"}, {"width": "50px", "height":"40px"}, {"width": "40px", "height":"70px"},{"width": "50px", "height":"80px"}]
+    let shapeList = [{"width": "40", "height":"40"}, {"width": "50", "height":"40"}, {"width": "40", "height":"70"},{"width": "50", "height":"80"}]
     let errors = {shapesGreaterMax: ""}
     act(() => {
     
@@ -98,7 +98,7 @@ it("should render 0 shapes", () => {
 
   it("should make error shapeGreaterMax empty on click", () => {
     let errors = {shapesGreaterMax: "not empty"}
-    let shapeList = [{"width": "40px", "height":"40px"}, {"width": "50px", "height":"40px"}, {"width": "40px", "height":"70px"},{"width": "50px", "height":"80px"}]
+    let shapeList = [{"width": "40", "height":"40"}, {"width": "50", "height":"40"}, {"width": "40", "height":"70"},{"width": "50", "height":"80"}]
     act(() => { 
       const shapeState = jest.fn((newShapes) => {shapeList = newShapes})
       const errorState = jest.fn((updatedErrors) => {errors = updatedErrors})
