@@ -1,7 +1,7 @@
 # Glass Cutting Problem
 
-![Glass Cutting Form](glass-cutting-problem-app/public/form-screenshot.jpg)
-![Glass Cutting Output](glass-cutting-problem-app/public/output-screenshot.jpg)
+![Glass Cutting Form](glass-cutting-problem-app/public/form-screenshot.JPG)
+![Glass Cutting Output](glass-cutting-problem-app/public/output-screenshot.JPG)
 
 ## General
 Web Application that allows users to visualise how many shapes can fit on a predetermined sheet of glass. This is a subset of the knapsack problem.
