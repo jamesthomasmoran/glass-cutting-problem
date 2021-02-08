@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../App.css';
 import handleApiCall from './handleApiCall'
-const requestURL = "https://8gpl2kxew8.execute-api.eu-west-2.amazonaws.com/Prod/sheetofglasswithshapes"
+
 const empty = ""
 const selectAlgorithmErrorMessage = "Must select a Cutting Algorithm"
 class AlgorithmParameterForm extends React.Component {
