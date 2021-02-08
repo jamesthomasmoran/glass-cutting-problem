@@ -6,7 +6,7 @@
 ## General
 Web Application that allows users to visualise how many shapes can fit on a predetermined sheet of glass. This is a subset of the knapsack problem.
 
-Users can choose a couple of fitting algorithms, aswell as setting the order in which shapes are added.
+Users can choose from a couple of fitting algorithms. They can also set the order in which shapes are added.
 
 Available to use at:
 
