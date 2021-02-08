@@ -1,4 +1,4 @@
-const requestURL = "https://8gpl2kxew8.execute-api.eu-west-2.amazonaws.com/Prod/sheetofglasswithshapes"
+const requestURL = process.env.REACT_APP_API_ENDPOINT;
 
 function handleApiCall(params, shapes, updateOutputState, updateShapesState){
     sendRequest(params, shapes, updateOutputState, updateShapesState)
